@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * 
  * @author gengzelyu
  * @version 2018.11.1
- * @param <T>
+ * @param <E>
  *            genric type.
  */
 public class LinkedList<E> {
