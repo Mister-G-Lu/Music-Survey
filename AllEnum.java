@@ -15,6 +15,4 @@ public class AllEnum {
     public enum majorEnum {CS, OTHERENG, MATHCMDA, OTHER};
     //Enum for region choices
     public enum regionEnum {NEUS, SEUS, RESTUS, OUTUS};
-    //Enum for song choices
-    public enum HLBEnum {HEARD, LIKE, BLANK};
 }
