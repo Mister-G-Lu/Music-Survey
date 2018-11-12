@@ -32,14 +32,15 @@ public class SortSongs {
     }
 
 
+    public LinkedList<T> sortAscendingDate() {
+        allSongs.insertSortString(2);
+    }
+    
     public LinkedList<T> sortGenres() {
         // Case DOES matter in this sorting method
         allSongs.insertSortString(3);
     }
 
 
-    public LinkedList<T> sortAscendingDate() {
-        allSongs.insertSortString(2);
-    }
 
 }
