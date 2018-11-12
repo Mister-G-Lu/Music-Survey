@@ -7,6 +7,9 @@ import java.util.ArrayList;
  * 
  * @author gengzelyu
  * @version 2018.11.12
+ * @author Goodwin Lu
+ * @version 2018/11/12
+ * (helped resolve index problems)
  * @param <T>
  *            generic type.
  */
