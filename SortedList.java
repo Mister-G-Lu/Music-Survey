@@ -28,6 +28,16 @@ public class SortedList<T extends Comparable<? super T>>
      *            position of string in array.
      */
     public void insertSortString(int index) {
+        if(index ! = 3 && index ! = 2)
+             {
+        // if we're NOT sorting by genre, capitalization does NOT matter
+        currNode = head;
+        while (currNode.next ! = null){
+        currNode.setData(currNode.getData().toLowerCase());
+        currNode = currNode.next;
+             }
+        }
+                    
         if (getSize() > 1) {
             assert head != null;
             Node<ArrayList<T>> unsorted = head.next.next;
