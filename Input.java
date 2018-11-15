@@ -38,16 +38,14 @@ public class Input {
 
         FilesScanner scanner = new FilesScanner();
         try {
-            SortedList<String> allSongData = scanner.scanFiles(surveyFileName,
-                songListFileName);
+            scanner.scanFiles(surveyFileName, songListFileName);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
+
         SortedList<String> allSongData = scanner.getAllSongData();
         System.out.println(allSongData.toString());
     }
 
-    
 }

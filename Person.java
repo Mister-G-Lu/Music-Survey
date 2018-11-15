@@ -79,12 +79,25 @@ public class Person {
         return responses;
     }
 
+
     /**
-     * add new response. 
-     * @param response new response. 
+     * add new response.
+     * 
+     * @param response
+     *            new response.
      */
     public void addResponses(String response) {
         responses.add(response);
     }
-    
+
+
+    /**
+     * transfer person into string.
+     * @return returns string represents person. 
+     */
+    public String toString() {
+        return "{" + major + ", " + region + ", " + hobby + ", " + responses
+            + "}";
+    }
+
 }
