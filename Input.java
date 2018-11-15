@@ -32,10 +32,8 @@ public class Input {
      *             throws if files not found.
      */
     public static void main(String args[]) {
-
         String surveyFileName = args[0];
         String songListFileName = args[1];
-
         FilesScanner scanner = new FilesScanner();
         try {
             scanner.scanFiles(surveyFileName, songListFileName);
@@ -45,6 +43,8 @@ public class Input {
         }
 
         SortedList<String> allSongData = scanner.getAllSongData();
+        
+        // temperolly print data. 
         System.out.println(allSongData.toString());
     }
 

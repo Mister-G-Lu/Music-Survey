@@ -118,10 +118,11 @@ public class FilesScanner {
     private ArrayList<Object> songListScanner(Scanner songListData) {
         // cant use scanner cause a line is not seperated by space.
         String[] aLine = songListData.nextLine().split(",");
-        String title = aLine[0];
-        String albums = aLine[1];
-        String year = aLine[2];
-        String genre = aLine[3];
+        
+        String title = aLine[0].trim();
+        String albums = aLine[1].trim();
+        String year = aLine[2].trim();
+        String genre = aLine[3].trim();
 
         ArrayList<Object> aSong = new ArrayList<Object>();
         aSong.add(title);
@@ -140,16 +141,18 @@ public class FilesScanner {
      * @return returns new person class that storing person info.
      */
     private Person surveyScanner(Scanner surveyData, int songIndex) {
-        String[] aLine = surveyData.nextLine().split(",");
+        String[] aLine = surveyData.nextLine().replaceAll(",", ", ").split(",");
+        // assert 
+        assert aLine.length > 2;
         // skip first 2 index and date.
-
-        String major = aLine[2];
-        String region = aLine[3];
-        String hobby = aLine[4];
+        // trim down string since data need to prevent emoty answer. 
+        String major = aLine[2].trim();
+        String region = aLine[3].trim();
+        String hobby = aLine[4].trim();
         Person newPerson = new Person(major, region, hobby);
         // skip to ith song based on songIndex.
-        newPerson.addResponses(aLine[4 + songIndex]);
-        newPerson.addResponses(aLine[5 + songIndex]);
+        newPerson.addResponses(aLine[4 + songIndex].trim());
+        newPerson.addResponses(aLine[5 + songIndex].trim());
         return newPerson;
     }
 
