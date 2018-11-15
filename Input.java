@@ -16,12 +16,9 @@ public class Input {
     /**
      * big list that stored all songs' data.
      */
-    private static SortedList<Object> allSongData;
-
 
     public Input() {
 
-        allSongData = new SortedList<String>();
     }
 
 
@@ -34,91 +31,23 @@ public class Input {
      * @throws FileNotFoundException
      *             throws if files not found.
      */
-    public static void main(String args[]) throws FileNotFoundException {
+    public static void main(String args[]) {
 
         String surveyFileName = args[0];
         String songListFileName = args[1];
 
-        scanFiles(surveyFileName, songListFileName);
-    }
-
-
-    /**
-     * 
-     * @param surveyName
-     * @param songListName
-     * @throws FileNotFoundException
-     */
-    private static void scanFiles(String surveyName, String songListName)
-        throws FileNotFoundException {
-        String rootLocation =
-            "/Users/gengzelyu/Desktop/CS 2114/Project5/InputFiles/";
+        FilesScanner scanner = new FilesScanner();
         try {
-            Scanner surveyData = new Scanner(new File(rootLocation
-                + surveyName));
-            Scanner songListData = new Scanner(new File(rootLocation
-                + surveyName));
+            SortedList<String> allSongData = scanner.scanFiles(surveyFileName,
+                songListFileName);
         }
         catch (FileNotFoundException e) {
-            throw new FileNotFoundException();
+            e.printStackTrace();
         }
-        Scanner surveyData = new Scanner(new File(rootLocation + surveyName));
-        Scanner songListData = new Scanner(new File(rootLocation + surveyName));
-        listCreator(surveyData, songListData);
-
+        
+        SortedList<String> allSongData = scanner.getAllSongData();
+        System.out.println(allSongData.toString());
     }
 
-
-    /**
-     * 
-     * @param surveyData
-     * @param songListData
-     */
-    private static void listCreator(Scanner surveyData, Scanner songListData) {
-        // get song info.
-        // skip first line.
-        surveyData.nextLine();
-        songListData.nextLine();
-        // song index in the song list.
-        int songIndex = 1;
-        while (songListData.hasNextLine()) {
-            ArrayList<Object> newSong = new ArrayList<Object>();
-            while (songListData.hasNext()) {
-                newSong.add(songListData.next());
-            }
-            // get survey info under one line in song list.
-            Person newPerson = surveyScanner(surveyData, songIndex);
-            newSong.add(newPerson);
-            allSongData.add(newSong); 
-            surveyData.nextLine();
-            songIndex++;
-        }
-
-    }
-
-
-    /**
-     * 
-     * @param surveyData
-     * @return
-     */
-    private static Person surveyScanner(Scanner surveyData, int songIndex) {
-
-        // skip first 2 index and date.
-        surveyData.next();
-        surveyData.next();
-        String major = surveyData.next();
-        String region = surveyData.next();
-        String hobby = surveyData.next();
-        Person newPerson = new Person(major, region, hobby);
-        // skip to ith song based on songIndex.
-        for (int i = 1; i < songIndex; i++) {
-            surveyData.next();
-            surveyData.next();
-        }
-        newPerson.addResponses(surveyData.next());
-        newPerson.addResponses(surveyData.next());
-        return newPerson;
-    }
-
+    
 }
