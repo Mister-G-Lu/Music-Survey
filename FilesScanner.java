@@ -120,13 +120,13 @@ public class FilesScanner {
         String[] aLine = songListData.nextLine().split(",");
         
         String title = aLine[0].trim();
-        String albums = aLine[1].trim();
+        String artist = aLine[1].trim();
         String year = aLine[2].trim();
         String genre = aLine[3].trim();
 
         ArrayList<Object> aSong = new ArrayList<Object>();
         aSong.add(title);
-        aSong.add(albums);
+        aSong.add(artist);
         aSong.add(year);
         aSong.add(genre);
         return aSong;
