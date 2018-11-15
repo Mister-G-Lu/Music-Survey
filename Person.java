@@ -3,6 +3,8 @@
  */
 package project5;
 
+import java.util.ArrayList;
+
 /**
  * @author Goodwin Lu
  * @version 11/13/2018
@@ -13,7 +15,7 @@ public class Person {
     private String major;
     private String region;
     // the responses tell of all the responses to all the songs.
-    private String[] responses;
+    private ArrayList<String> responses;
 
 
     /**
@@ -26,11 +28,11 @@ public class Person {
      * @param r
      *            the responses
      */
-    public Person(String h, String m, String r) {
+    public Person(String m, String r, String h) {
         hobby = h;
         major = m;
         region = r;
-        responses = new String[100];
+        responses = new ArrayList<String>();
     }
 
 
@@ -73,8 +75,16 @@ public class Person {
      * @return
      *         responses
      */
-    public String[] getResponses() {
+    public ArrayList<String> getResponses() {
         return responses;
     }
 
+    /**
+     * add new response. 
+     * @param response new response. 
+     */
+    public void addResponses(String response) {
+        responses.add(response);
+    }
+    
 }
