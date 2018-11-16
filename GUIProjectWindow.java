@@ -3,14 +3,19 @@
  */
 package project5;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
 import CS2114.*;
 
 /**
  * @author Goodwin Lu
- *         front-end GUI class
+ * @version 11/11/2018
+ *          front-end GUI class. Contains 9 shapes and 8 buttons.
  */
-public class GUIProjectWindow {
-    // to get the item, use list.getData().get(key)
+@SuppressWarnings("serial")
+public class GUIProjectWindow extends JPanel{
+    // to get the item, use listName.getData()[index]
     private Window window;
     private Shape topleft;
     private Shape top;
@@ -22,12 +27,20 @@ public class GUIProjectWindow {
     private Shape down;
     private Shape downright;
     private Shape legend;
-    // TO-DO: create class that sorts the songs
-    static sortSongs ss;
-    static representSurvey rs;
+    private Button prev;
+    private Button next;
+    // allSongs contains: artist, title, year, genre, and a LinkedList of the
+    // people and their opinions on that specific song
+    private SortedList<T[]> allSongs;
+
+    static SortSongs ss;
+    private RepresentSurvey rs;
+    private double[] heard;
+    private double[] liked;
 
 
     public GUIProjectWindow() {
+        // create all the 9 shapes and the window
         window = new Window("Project 5");
         // x, y, width, height
         topleft = new Shape(50, 50, 100, 50);
@@ -42,10 +55,12 @@ public class GUIProjectWindow {
         right = new Shape(475, 150, 100, 50);
         downright = new Shape(475, 250, 100, 50);
 
-        legend = new Shape(550, 250, 50, 100);
-
-        Button prev = new Button("<- Prev");
+        legend = new Shape(550, 250, 50, 100, Color.WHITE);
+        
+        // create the top buttons
+        prev = new Button("<- Prev");
         window.addButton((prev), WindowSide.NORTH);
+        prev.disable();
         prev.onClick(this, "clickedPrev");
         Button art = new Button("Sort by Artist Name");
         window.addButton(art, WindowSide.NORTH);
@@ -59,10 +74,11 @@ public class GUIProjectWindow {
         Button g = new Button("Sort by Genre");
         window.addButton(g, WindowSide.NORTH);
         g.onClick(this, "clickedGenre");
-        Button next = new Button("Next ->");
+        next = new Button("Next ->");
         window.addButton(next, WindowSide.NORTH);
         next.onClick(this, "clickedNext");
 
+        // create the bottom buttons
         Button rh = new Button("Represent Hobby");
         window.addButton(rh, WindowSide.SOUTH);
         rh.onClick(this, "clickedHobby");
@@ -75,6 +91,8 @@ public class GUIProjectWindow {
         Button q = new Button("Quit");
         window.addButton(q, WindowSide.SOUTH);
         r.onClick(this, "quit");
+
+        rs = new RepresentSurvey(allSongs);
     }
 
 
@@ -97,6 +115,8 @@ public class GUIProjectWindow {
      *            previous button
      */
     public void clikedPrev(Button b) {
+        next.enable();
+        
         b.disable();
     }
 
@@ -166,12 +186,13 @@ public class GUIProjectWindow {
 
 
     /**
-     * visit next 9 genres
+     * visit next 9 songs
      * 
      * @param b
      *            next button
      */
     public void clickedNext(Button b) {
+        prev.enable();
         b.disable();
     }
 
@@ -186,6 +207,9 @@ public class GUIProjectWindow {
         b.disable();
         new Thread() {
             public void run() {
+                Graphics2D graph;
+                graph.drawString("Hobby Legend", legend.getX(), legend.getY());
+                legend.draw(graph);
                 rs.representHobby();
             }
         }.start();
@@ -202,6 +226,9 @@ public class GUIProjectWindow {
         b.disable();
         new Thread() {
             public void run() {
+                Graphics2D graph;
+                graph.drawString("Major Legend", legend.getX(), legend.getY());
+                legend.draw(graph);
                 rs.representMajor();
             }
         }.start();
@@ -218,6 +245,9 @@ public class GUIProjectWindow {
         b.disable();
         new Thread() {
             public void run() {
+                Graphics2D graph;
+                graph.drawString("Region Legend", legend.getX(), legend.getY());
+                legend.draw(graph);
                 rs.representRegion();
             }
         }.start();
