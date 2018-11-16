@@ -9,10 +9,12 @@ package project5;
  * @version 2018.11.7
  */
 public class AllEnum {
-    //Enum for hobby choices
+    // Enum for hobby choices
     public enum hobbyEnum {READ, ART, SPORTS, MUSIC};
-    //Enum for major choices
+    // Enum for major choices
     public enum majorEnum {CS, OTHERENG, MATHCMDA, OTHER};
-    //Enum for region choices
+    // Enum for region choices
     public enum regionEnum {NEUS, SEUS, RESTUS, OUTUS};
+    // Enum for position
+    public enum positionEnum{TOPLEFT,TOP,TOPRIGHT,LEFT,MIDDLE,RIGHT,DOWNLEFT,DOWN,DOWNRIGHT};
 }
