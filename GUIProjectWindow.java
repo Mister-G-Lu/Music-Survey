@@ -14,7 +14,7 @@ import CS2114.*;
  *          front-end GUI class. Contains 9 shapes and 8 buttons.
  */
 @SuppressWarnings("serial")
-public class GUIProjectWindow extends JPanel{
+public class GUIProjectWindow extends JPanel {
     // to get the item, use listName.getData()[index]
     private Window window;
     private Shape topleft;
@@ -39,8 +39,11 @@ public class GUIProjectWindow extends JPanel{
     private double[] liked;
 
 
+    /**
+     * default constructor.
+     */
     public GUIProjectWindow() {
-        // create all the 9 shapes and the window
+        // create all the 9 basic shapes and the window
         window = new Window("Project 5");
         // x, y, width, height
         topleft = new Shape(50, 50, 100, 50);
@@ -56,7 +59,38 @@ public class GUIProjectWindow extends JPanel{
         downright = new Shape(475, 250, 100, 50);
 
         legend = new Shape(550, 250, 50, 100, Color.WHITE);
-        
+
+        for (int i = 0; i < 27; i++) {
+            BarShape index = new BarShape(50, 50);
+            window.addShape(index);
+            if (i < 2) {
+                moveBar(index, Position.TOPLEFT);
+            }
+            else if (i < 5) {
+                moveBar(index, Position.TOP);
+            }
+            else if (i < 8) {
+                moveBar(index, Position.TOPRIGHT);
+            }
+            else if (i < 11) {
+                moveBar(index, Position.LEFT);
+            }
+            else if (i < 14) {
+                moveBar(index, Position.MIDDLE);
+            }
+            else if (i < 17) {
+                moveBar(index, Position.RIGHT);
+            }
+            else if (i < 20) {
+                moveBar(index, Position.DOWNLEFT);
+            }
+            else if (i < 23) {
+                moveBar(index, Position.DOWN);
+            }
+            else {
+                moveBar(index, Position.DOWNRIGHT);
+            }
+        }
         // create the top buttons
         prev = new Button("<- Prev");
         window.addButton((prev), WindowSide.NORTH);
@@ -116,7 +150,7 @@ public class GUIProjectWindow extends JPanel{
      */
     public void clikedPrev(Button b) {
         next.enable();
-        
+
         b.disable();
     }
 
@@ -267,5 +301,48 @@ public class GUIProjectWindow extends JPanel{
                 System.exit(0);
             }
         }.start();
+    }
+
+
+    /**
+     * move the barShape to the GUI position (left, middle, right)
+     * 
+     * @param p
+     *            the position
+     */
+    private void moveBar(BarShape bar, Position p) {
+        Shape currentPole = null;
+        if (p == Position.TOPLEFT) {
+            currentPole = topleft;
+        }
+        if (p == Position.TOP) {
+            currentPole = top;
+        }
+        if (p == Position.TOPRIGHT) {
+            currentPole = topright;
+        }
+        if (p == Position.LEFT) {
+            currentPole = left;
+        }
+        if (p == Position.MIDDLE) {
+            currentPole = mid;
+        }
+        if (p == Position.RIGHT) {
+            currentPole = right;
+        }
+
+        if (p == Position.DOWNLEFT) {
+            currentPole = downleft;
+        }
+
+        if (p == Position.DOWN) {
+            currentPole = down;
+        }
+
+        if (p == Position.DOWNRIGHT) {
+            currentPole = downright;
+        }
+        bar.moveTo(currentPole.getX(), currentPole.getY());
+
     }
 }
