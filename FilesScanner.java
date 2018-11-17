@@ -17,7 +17,9 @@ public class FilesScanner {
     private String rootLocation;
     private String surveyName;
 
-
+    /**
+    * Default constructor.
+    */
     public FilesScanner() {
 
         allSongData = new SortedList<String>();
@@ -145,7 +147,7 @@ public class FilesScanner {
         // assert 
         assert aLine.length > 2;
         // skip first 2 index and date.
-        // trim down string since data need to prevent emoty answer. 
+        // trim down string since data need to prevent empty answer. 
         String major = aLine[2].trim();
         String region = aLine[3].trim();
         String hobby = aLine[4].trim();
