@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version 2018.11.12
  * @param <T> generic type. 
  */
-public class SortedList<T extends Comparable<? super T>>
+public class SortedList<T>
     extends LinkedList<ArrayList<T>> {
 
     /**
@@ -49,15 +49,14 @@ public class SortedList<T extends Comparable<? super T>>
         Node<ArrayList<T>> nodeToInsert,
         // get string in array with index. 
         int index) {
-        T data = nodeToInsert.getData().get(index);
+        String data = (String) nodeToInsert.getData().get(index);
         Node<ArrayList<T>> currentNode = head.getNextNode();
         Node<ArrayList<T>> previousNode = null;
         // compare order
-        while ((currentNode != null) && (data.compareTo(currentNode.getData()
+        while ((currentNode != null) && (data.compareTo((String) currentNode.getData()
             .get(index)) > 0)) {
             previousNode = currentNode;
             currentNode = currentNode.getNextNode();
-
         }
         // insert order
         if (previousNode != null) {
@@ -119,5 +118,10 @@ public class SortedList<T extends Comparable<? super T>>
             head.setNext(nodeToInsert);
             currentNode.setPrevious(nodeToInsert);
         }
+    }
+    
+    @Override
+    public void add(ArrayList<T> newArray) {
+        super.add(newArray);
     }
 }

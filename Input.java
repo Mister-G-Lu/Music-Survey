@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,7 +42,7 @@ public class Input {
             e.printStackTrace();
         }
 
-        SortedList<String> allSongData = scanner.getAllSongData();
+        SortedList<Object> allSongData = scanner.getAllSongData();
         
         // temperolly print data. 
         System.out.println(allSongData.toString());

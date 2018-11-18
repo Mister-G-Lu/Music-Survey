@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class FilesScanner {
 
-    private SortedList<String> allSongData;
+    private SortedList<Object> allSongData;
     private String rootLocation;
     private String surveyName;
 
@@ -22,7 +22,7 @@ public class FilesScanner {
     */
     public FilesScanner() {
 
-        allSongData = new SortedList<String>();
+        allSongData = new SortedList<Object>();
     }
 
 
@@ -42,7 +42,7 @@ public class FilesScanner {
         // save it for resetter.
         this.surveyName = surveyName;
         // files location. change this or comment out on different pc.
-        rootLocation = "/Users/gengzelyu/Desktop/CS 2114/Project5/InputFiles/";
+        rootLocation = "/Users/gengzelyu/Desktop/CS 2114/project 5/InputFiles/";
         Exception thrown = null;
         try {
             Scanner surveyData = new Scanner(new File(rootLocation
@@ -65,6 +65,7 @@ public class FilesScanner {
 
     /**
      * create list from scanner files.
+     * @param <T>
      * 
      * @param surveyData
      *            survey scanner.
@@ -72,7 +73,7 @@ public class FilesScanner {
      *            song list scanner.
      * @throws FileNotFoundException
      */
-    private void listCreator(Scanner surveyData, Scanner songListData)
+    private <T> void listCreator(Scanner surveyData, Scanner songListData)
         throws FileNotFoundException {
         // get song info.
         // skip first line.
@@ -80,20 +81,21 @@ public class FilesScanner {
         surveyData.nextLine();
         songListData.nextLine();
         // song index in the song list.
-        int songIndex = 1;
+        int songIndex = 0;
         while (songListData.hasNextLine()) {
-            ArrayList<Object> newSong = songListScanner(songListData);
+            ArrayList<Object> newSong = new ArrayList<Object>();
+            newSong.add(songListScanner(songListData));
             // get survey info under one line in song list.
+            // add new person to node. 
             while (localSurveyData.hasNextLine()) {
-                Person newPerson = surveyScanner(localSurveyData, songIndex);
-                newSong.add(newPerson);
+                Person newPerson = surveyScanner(localSurveyData, songIndex); 
+                newSong.add(newPerson); 
             }
             // reset survey scanner.
             localSurveyData = resetSurveyScanner();
-            allSongData.add(newSong);
-            songIndex++;
+            allSongData.add(newSong); 
+            songIndex+=2;
         }
-
     }
 
 
@@ -153,8 +155,8 @@ public class FilesScanner {
         String hobby = aLine[4].trim();
         Person newPerson = new Person(major, region, hobby);
         // skip to ith song based on songIndex.
-        newPerson.addResponses(aLine[4 + songIndex].trim());
         newPerson.addResponses(aLine[5 + songIndex].trim());
+        newPerson.addResponses(aLine[6 + songIndex].trim());
         return newPerson;
     }
 
@@ -164,7 +166,7 @@ public class FilesScanner {
      * 
      * @return returns song list with all raw data.
      */
-    public SortedList<String> getAllSongData() {
+    public SortedList<Object> getAllSongData() {
         return allSongData;
     }
 
