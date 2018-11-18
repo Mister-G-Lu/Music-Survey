@@ -66,7 +66,7 @@ public class FilesScanner {
     /**
      * create list from scanner files.
      * @param <T>
-     * 
+     *            generic type.
      * @param surveyData
      *            survey scanner.
      * @param songListData
