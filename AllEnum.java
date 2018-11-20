@@ -1,7 +1,7 @@
 /**
  * 
  */
-package project5;
+package prj5;
 
 /**
  * Enum holder class
@@ -9,10 +9,14 @@ package project5;
  * @version 2018.11.7
  */
 public class AllEnum {
-    //Enum for hobby choices
-    public enum hobbyEnum {READ, ART, SPORTS, MUSIC};
-    //Enum for major choices
-    public enum majorEnum {CS, OTHERENG, MATHCMDA, OTHER};
-    //Enum for region choices
-    public enum regionEnum {NEUS, SEUS, RESTUS, OUTUS};
+    // Enum for hobby choices
+    public enum hobbyEnum {READ, ART, SPORTS, MUSIC, BLANK};
+    // Enum for major choices
+    public enum majorEnum {CS, OTHERENG, MATHCMDA, OTHER, BLANK};
+    // Enum for region choices
+    public enum regionEnum {NEUS, SEUS, RESTUS, OUTUS, BLANK};
+    // Enum for position
+    public enum positionEnum{TOPLEFT,TOP,TOPRIGHT,LEFT,MIDDLE,RIGHT,DOWNLEFT,DOWN,DOWNRIGHT};
+    // enum for responses. 
+    public enum responseEnum{YES, NO, BLANK}; 
 }
