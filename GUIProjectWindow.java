@@ -29,7 +29,7 @@ public class GUIProjectWindow extends JPanel {
     private Shape down;
     private Shape downright;
     private Shape legend;
-    
+
     private TextShape toplefttext;
     private TextShape toptext;
     private TextShape toprighttext;
@@ -111,16 +111,20 @@ public class GUIProjectWindow extends JPanel {
         rs = new RepresentSurvey(allSongs);
     }
 
+
     /**
-    * display the "Title by band" format
-    * @param which
-    *           the song we're obtaining
-    * @return
-    *           the string
-    */ 
-    public String display(int which){
+     * display the "Title by band" format
+     * 
+     * @param which
+     *            the song we're obtaining
+     * @return
+     *         the string
+     */
+    public String display(int which) {
         return allSongs.get(which)[0] + " by " + allSongs.get(which)[1];
     }
+
+
     /**
     * update the GUI to match the 9 songs
     */
@@ -167,6 +171,7 @@ public class GUIProjectWindow extends JPanel {
             }
         }
     }
+
 
     /**
      * sleep method
