@@ -16,6 +16,8 @@ import CS2114.*;
 @SuppressWarnings("serial")
 public class GUIProjectWindow extends JPanel {
     // to get the item, use listName.getData()[index]
+    // use counting variable to keep track of which song we're on
+    private int count = 0;
     private Window window;
     private Shape topleft;
     private Shape top;
@@ -110,11 +112,29 @@ public class GUIProjectWindow extends JPanel {
     }
 
     /**
+    * display the "Title by band" format
+    * @param which
+    *           the song we're obtaining
+    * @return
+    *           the string
+    */ 
+    public String display(int which){
+        return allSongs.get(which)[0] + " by " + allSongs.get(which)[1];
+    }
+    /**
     * update the GUI to match the 9 songs
     */
     public void update(){
-        // TO-DO METHOD STUB
-        
+                toplefttext.setText();
+   toptext.setText(display(0));
+     toprighttext.setText(display(1));
+     lefttext.setText(display(2));
+     midtext.setText(display(3));
+     righttext.setText(display(4));
+     downlefttext.setText(display(5));
+     downtext.setText(display(6));
+    downrighttext.setText(display(7);
+          //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < 27; i++) {
             BarShape index = new BarShape(50, 50);
             window.addShape(index);
