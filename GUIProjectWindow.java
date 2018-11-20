@@ -27,6 +27,17 @@ public class GUIProjectWindow extends JPanel {
     private Shape down;
     private Shape downright;
     private Shape legend;
+    
+    private TextShape toplefttext;
+    private TextShape toptext;
+    private TextShape toprighttext;
+    private TextShape lefttext;
+    private TextShape midtext;
+    private TextShape righttext;
+    private TextShape downlefttext;
+    private TextShape downtext;
+    private TextShape downrighttext;
+    private TextShape legendtext;
     private Button prev;
     private Button next;
     // allSongs contains: artist, title, year, genre, and a LinkedList of the
@@ -60,37 +71,6 @@ public class GUIProjectWindow extends JPanel {
 
         legend = new Shape(550, 250, 50, 100, Color.WHITE);
 
-        for (int i = 0; i < 27; i++) {
-            BarShape index = new BarShape(50, 50);
-            window.addShape(index);
-            if (i < 2) {
-                moveBar(index, Position.TOPLEFT);
-            }
-            else if (i < 5) {
-                moveBar(index, Position.TOP);
-            }
-            else if (i < 8) {
-                moveBar(index, Position.TOPRIGHT);
-            }
-            else if (i < 11) {
-                moveBar(index, Position.LEFT);
-            }
-            else if (i < 14) {
-                moveBar(index, Position.MIDDLE);
-            }
-            else if (i < 17) {
-                moveBar(index, Position.RIGHT);
-            }
-            else if (i < 20) {
-                moveBar(index, Position.DOWNLEFT);
-            }
-            else if (i < 23) {
-                moveBar(index, Position.DOWN);
-            }
-            else {
-                moveBar(index, Position.DOWNRIGHT);
-            }
-        }
         // create the top buttons
         prev = new Button("<- Prev");
         window.addButton((prev), WindowSide.NORTH);
@@ -129,6 +109,44 @@ public class GUIProjectWindow extends JPanel {
         rs = new RepresentSurvey(allSongs);
     }
 
+    /**
+    * update the GUI to match the 9 songs
+    */
+    public void update(){
+        // TO-DO METHOD STUB
+        
+        for (int i = 0; i < 27; i++) {
+            BarShape index = new BarShape(50, 50);
+            window.addShape(index);
+            if (i < 2) {
+                moveBar(index, Position.TOPLEFT);
+            }
+            else if (i < 5) {
+                moveBar(index, Position.TOP);
+            }
+            else if (i < 8) {
+                moveBar(index, Position.TOPRIGHT);
+            }
+            else if (i < 11) {
+                moveBar(index, Position.LEFT);
+            }
+            else if (i < 14) {
+                moveBar(index, Position.MIDDLE);
+            }
+            else if (i < 17) {
+                moveBar(index, Position.RIGHT);
+            }
+            else if (i < 20) {
+                moveBar(index, Position.DOWNLEFT);
+            }
+            else if (i < 23) {
+                moveBar(index, Position.DOWN);
+            }
+            else {
+                moveBar(index, Position.DOWNRIGHT);
+            }
+        }
+    }
 
     /**
      * sleep method
@@ -241,9 +259,6 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
-                Graphics2D graph;
-                graph.drawString("Hobby Legend", legend.getX(), legend.getY());
-                legend.draw(graph);
                 rs.representHobby();
             }
         }.start();
@@ -260,9 +275,6 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
-                Graphics2D graph;
-                graph.drawString("Major Legend", legend.getX(), legend.getY());
-                legend.draw(graph);
                 rs.representMajor();
             }
         }.start();
@@ -279,9 +291,6 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
-                Graphics2D graph;
-                graph.drawString("Region Legend", legend.getX(), legend.getY());
-                legend.draw(graph);
                 rs.representRegion();
             }
         }.start();
