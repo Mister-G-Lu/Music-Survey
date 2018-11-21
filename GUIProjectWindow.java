@@ -284,6 +284,8 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
+                legendtext.setText(
+                    "Hobby Legend \n Read \n Art \n Sports \n Music \n Song Title");
                 rs.representHobby();
             }
         }.start();
@@ -300,6 +302,9 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
+
+                legendtext.setText(
+                    "Major Legend \n Comp Sci \n Other Eng \n Math/CMDA \n Other \n Song Title");
                 rs.representMajor();
             }
         }.start();
@@ -316,6 +321,9 @@ public class GUIProjectWindow extends JPanel {
         b.disable();
         new Thread() {
             public void run() {
+
+                legendtext.setText(
+                    "Region Legend \n Northeast US \n Southeast US \n the rest of US \n outside the US");
                 rs.representRegion();
             }
         }.start();
