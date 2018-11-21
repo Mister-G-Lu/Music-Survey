@@ -129,14 +129,14 @@ public class GUIProjectWindow extends JPanel {
     * update the GUI to match the 9 songs
     */
     public void update(){
-                toplefttext.setText();
-   toptext.setText(display(0));
-     toprighttext.setText(display(1));
-     lefttext.setText(display(2));
-     midtext.setText(display(3));
-     righttext.setText(display(4));
-     downlefttext.setText(display(5));
-     downtext.setText(display(6));
+    toplefttext.setText();
+    toptext.setText(display(0));
+    toprighttext.setText(display(1));
+    lefttext.setText(display(2));
+    midtext.setText(display(3));
+    righttext.setText(display(4));
+    downlefttext.setText(display(5));
+    downtext.setText(display(6));
     downrighttext.setText(display(7);
           //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < 27; i++) {
