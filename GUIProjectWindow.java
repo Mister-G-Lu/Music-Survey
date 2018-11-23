@@ -134,7 +134,9 @@ public class GUIProjectWindow extends JPanel {
     */
     public void update(){
     toplefttext.setText(display(count));
-    toptext.setText(display(count+1));
+        try{
+            // keep on displaying the songs until we get outofbounds or all 9
+     toptext.setText(display(count+1));
     toprighttext.setText(display(count+2));
     lefttext.setText(display(count+3));
     midtext.setText(display(count+4));
@@ -142,6 +144,10 @@ public class GUIProjectWindow extends JPanel {
     downlefttext.setText(display(count+6));
     downtext.setText(display(count+7));
     downrighttext.setText(display(count+8));
+        }
+        catch(IndexOutOfBounds e){
+            // do nothing.
+        }
           //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < 27; i++) {
             //TO-DO: Update BarShape to heard/liked percentages
@@ -287,10 +293,10 @@ public class GUIProjectWindow extends JPanel {
      */
     public void clickedNext(Button b) {
         prev.enable();
-        if (count + 9 >allSongs.size())
+        if (count + 9 > = allSongs.size())
             // can't go to next anymore
         {b.disable();
-         count = allSongs.size();
+         count = allSongs.size() - 1;
         }
         else{
             count + = 9;
