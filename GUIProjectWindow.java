@@ -45,7 +45,10 @@ public class GUIProjectWindow extends JPanel {
     // allSongs contains: artist, title, year, genre, and a LinkedList of the
     // people and their opinions on that specific song
     private SortedList<T[]> allSongs;
-
+    // use fs to access the list of people
+    private FileScanner fs;
+    // count which song we're on.
+    private int count = 0;
     static SortSongs ss;
     private RepresentSurvey rs;
     private double[] heard;
@@ -109,6 +112,7 @@ public class GUIProjectWindow extends JPanel {
         r.onClick(this, "quit");
 
         rs = new RepresentSurvey(allSongs);
+        fs = new FileScanner();
     }
 
 
@@ -129,17 +133,18 @@ public class GUIProjectWindow extends JPanel {
     * update the GUI to match the 9 songs
     */
     public void update(){
-    toplefttext.setText();
-    toptext.setText(display(0));
-    toprighttext.setText(display(1));
-    lefttext.setText(display(2));
-    midtext.setText(display(3));
-    righttext.setText(display(4));
-    downlefttext.setText(display(5));
-    downtext.setText(display(6));
-    downrighttext.setText(display(7);
+    toplefttext.setText(display(count));
+    toptext.setText(display(count+1));
+    toprighttext.setText(display(count+2));
+    lefttext.setText(display(count+3));
+    midtext.setText(display(count+4));
+    righttext.setText(display(count+5));
+    downlefttext.setText(display(count+6));
+    downtext.setText(display(count+7));
+    downrighttext.setText(display(count+8));
           //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < 27; i++) {
+            //TO-DO: Update BarShape to heard/liked percentages
             BarShape index = new BarShape(50, 50);
             window.addShape(index);
             if (i < 2) {
@@ -193,7 +198,15 @@ public class GUIProjectWindow extends JPanel {
      */
     public void clikedPrev(Button b) {
         next.enable();
-
+        if (count - 9 < 0)
+            // can't go to previous anymore
+        {b.disable();
+         count = 0;
+        }
+        else{
+            count - = 9;
+        }
+         update();
         b.disable();
     }
 
@@ -209,6 +222,7 @@ public class GUIProjectWindow extends JPanel {
         new Thread() {
             public void run() {
                 ss.sortArtists();
+                update();
             }
         }.start();
     }
@@ -225,6 +239,7 @@ public class GUIProjectWindow extends JPanel {
         new Thread() {
             public void run() {
                 ss.sortTitles();
+                update();
             }
         }.start();
     }
@@ -241,6 +256,7 @@ public class GUIProjectWindow extends JPanel {
         new Thread() {
             public void run() {
                 ss.sortYears();
+                update();
             }
         }.start();
     }
@@ -257,6 +273,7 @@ public class GUIProjectWindow extends JPanel {
         new Thread() {
             public void run() {
                 ss.sortGenres();
+                update();
             }
         }.start();
     }
@@ -270,6 +287,15 @@ public class GUIProjectWindow extends JPanel {
      */
     public void clickedNext(Button b) {
         prev.enable();
+        if (count + 9 >allSongs.size())
+            // can't go to next anymore
+        {b.disable();
+         count = allSongs.size();
+        }
+        else{
+            count + = 9;
+        }
+            update();
         b.disable();
     }
 
@@ -287,6 +313,7 @@ public class GUIProjectWindow extends JPanel {
                 legendtext.setText(
                     "Hobby Legend \n Read \n Art \n Sports \n Music \n Song Title");
                 rs.representHobby();
+                update();
             }
         }.start();
     }
@@ -306,6 +333,7 @@ public class GUIProjectWindow extends JPanel {
                 legendtext.setText(
                     "Major Legend \n Comp Sci \n Other Eng \n Math/CMDA \n Other \n Song Title");
                 rs.representMajor();
+                update();
             }
         }.start();
     }
@@ -325,6 +353,7 @@ public class GUIProjectWindow extends JPanel {
                 legendtext.setText(
                     "Region Legend \n Northeast US \n Southeast US \n the rest of US \n outside the US");
                 rs.representRegion();
+                update();
             }
         }.start();
     }
