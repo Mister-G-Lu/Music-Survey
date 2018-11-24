@@ -26,9 +26,9 @@ public class BarShape extends Shape {
      * @param s
      *            the song
      * @param h
-     *            height
+     *            the left side (heard)
      * @param l
-     *            length
+     *            the right side (liked)
      * 
      */
     public BarShape(int h, int l) {
