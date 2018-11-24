@@ -44,7 +44,7 @@ public class Input {
 
         SortedList<Object> allSongData = scanner.getAllSongData();
         
-        // temperolly print data. 
+        // temporarily print data. 
         System.out.println(allSongData.toString());
     }
 
