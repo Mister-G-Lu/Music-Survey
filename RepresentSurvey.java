@@ -57,8 +57,7 @@ public class RepresentSurvey {
     public int[] getHobby(){
         return hobby;
     }
-    
-    public enum regionEnum {};
+   
     /**
      * represent via region
      */
