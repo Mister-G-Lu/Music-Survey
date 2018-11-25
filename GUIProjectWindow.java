@@ -47,6 +47,7 @@ public class GUIProjectWindow extends JPanel {
     private SortedList<T[]> allSongs;
     // use fs to access the list of people
     private FileScanner fs;
+    
     // count which song we're on.
     private int count = 0;
     static SortSongs ss;
@@ -113,6 +114,8 @@ public class GUIProjectWindow extends JPanel {
 
         rs = new RepresentSurvey(allSongs);
         fs = new FileScanner();
+        // initialize the allSongs array.
+        allSongs = fs.getAllSongData();
     }
 
 
@@ -136,7 +139,7 @@ public class GUIProjectWindow extends JPanel {
     toplefttext.setText(display(count));
         try{
             // keep on displaying the songs until we get outofbounds or all 9
-     toptext.setText(display(count+1));
+    toptext.setText(display(count+1));
     toprighttext.setText(display(count+2));
     lefttext.setText(display(count+3));
     midtext.setText(display(count+4));
@@ -149,7 +152,7 @@ public class GUIProjectWindow extends JPanel {
             // do nothing.
         }
           //TO-DO: LEGEND METHOD STUB
-        for (int i = 0; i < 27; i++) {
+        for (int i = 0; i < (count+9)*3; i++) {
             //TO-DO: Update BarShape to heard/liked percentages
             BarShape index = new BarShape(50, 50);
             window.addShape(index);
