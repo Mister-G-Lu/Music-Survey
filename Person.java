@@ -16,7 +16,8 @@ public class Person {
     private hobbyEnum hobby;
     private majorEnum major;
     private regionEnum region;
-    // the responses tell of all the responses to all the songs.
+    // the responses tell of all the responses to all the songs. 
+    // Format of heard, liked, heard, liked...
     private ArrayList<responseEnum> responses;
 
 
