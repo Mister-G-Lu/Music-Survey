@@ -45,7 +45,8 @@ public class GUIProjectWindow extends JPanel {
     // allSongs contains: artist, title, year, genre, and a LinkedList of the
     // people and their opinions on that specific song
     private SortedList<T[]> allSongs;
-    // use fs to access the list of people
+    // use fs to access the list of people 
+    // (note that Blank responses are not recorded, nor do they count)
     private FileScanner fs;
     
     // count which song we're on.
