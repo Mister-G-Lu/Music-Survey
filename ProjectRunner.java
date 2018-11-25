@@ -17,6 +17,6 @@ public class ProjectRunner {
      *            surveylist
      */
     public static void main(String SongsListFile, String SurveyListFile) {
-
+    GUIProjectWindow temporary = new GUIProjectWindow();
     }
 }
