@@ -1,4 +1,4 @@
-package prj5;
+package project5;
 
 import java.util.ArrayList;
 
@@ -7,13 +7,10 @@ import java.util.ArrayList;
  * 
  * @author gengzelyu
  * @version 2018.11.12
- * @author Goodwin Lu
- * @version 2018/11/12
- * (helped resolve index problems)
  * @param <T>
  *            generic type.
  */
-public class SortedList<T>
+public class SortedList<T extends Comparable<? super T>>
     extends LinkedList<ArrayList<T>> {
 
     /**
@@ -31,16 +28,15 @@ public class SortedList<T>
      *            position of string in array.
      */
     public void insertSortString(int index) {
-        if(index ! = 3 && index ! = 2)
-             {
-        // if we're NOT sorting by genre, capitalization does NOT matter
-        currNode = head;
-        while (currNode.next ! = null){
-        currNode.setData(currNode.getData().toLowerCase());
-        currNode = currNode.next;
-             }
+        if (index != 3 && index != 2) {
+            // if we're NOT sorting by genre, capitalization does NOT matter
+            Node<ArrayList<T>> currNode = head;
+            while (currNode.next != null) {
+                // String s = (String)currNode.getData().get(0);
+                currNode = currNode.next;
+            }
         }
-                    
+
         if (getSize() > 1) {
             assert head != null;
             Node<ArrayList<T>> unsorted = head.next.next;
@@ -66,36 +62,34 @@ public class SortedList<T>
 
 
     /**
-     * insert node into list. 
-     * @param nodeToInsert node to be insert. 
-     * @param index position of string in array. 
+     * insert node into list.
+     * 
+     * @param nodeToInsert
+     *            node to be insert.
+     * @param index
+     *            position of string in array.
      */
     private void insertStringInOrder(
         Node<ArrayList<T>> nodeToInsert,
-        // get string in array with index. 
+        // get string in array with index.
         int index) {
         // uses [index] due to SortedList<T[]>
-        T data = nodeToInsert.getData()[index];
+        T data = nodeToInsert.getData().get(index);
         Node<ArrayList<T>> currentNode = head.getNextNode();
         Node<ArrayList<T>> previousNode = null;
         // compare order
         while ((currentNode != null) && (data.compareTo(currentNode.getData()
-            [index] > 0)) {
-        String data = (String) nodeToInsert.getData().get(index);
-        Node<ArrayList<T>> currentNode = head.getNextNode();
-        Node<ArrayList<T>> previousNode = null;
-        // compare order
-        while ((currentNode != null) && (data.compareTo((String) currentNode.getData()
             .get(index)) > 0)) {
             previousNode = currentNode;
             currentNode = currentNode.getNextNode();
+
         }
         // insert order
         if (previousNode != null) {
             previousNode.setNext(nodeToInsert);
             nodeToInsert.setNext(currentNode);
         }
-        // place it at beginning. 
+        // place it at beginning.
         else {
             nodeToInsert.setNext(currentNode);
             nodeToInsert.setPrevious(head);
@@ -113,12 +107,12 @@ public class SortedList<T>
      */
     private void insertNumberInOrder(Node<ArrayList<T>> nodeToInsert) {
         // get integer at index 2 in array.
-        int num = Integer.valueOf((nodeToInsert.getData()[2].toString()));
+        int num = Integer.valueOf((nodeToInsert.getData().get(2).toString()));
         Node<ArrayList<T>> currentNode = head.getNextNode();
         Node<ArrayList<T>> previousNode = null;
         // compare number, cast it out.
         while ((currentNode != null) && (num) > (Integer.valueOf((currentNode
-            .getData()[2].toString())))) {
+            .getData().get(2).toString())))) {
             previousNode = currentNode;
             currentNode = currentNode.getNextNode();
 
@@ -133,10 +127,5 @@ public class SortedList<T>
             head.setNext(nodeToInsert);
             currentNode.setPrevious(nodeToInsert);
         }
-    }
-    
-    @Override
-    public void add(ArrayList<T> newArray) {
-        super.add(newArray);
     }
 }
