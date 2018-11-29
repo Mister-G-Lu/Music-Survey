@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * @param <T>
  *            generic type.
  */
-public class SortedList<T extends Comparable<? super T>>
-    extends LinkedList<ArrayList<T>> {
+public class SortedList<T >extends LinkedList<T> {
 
     /**
      * create linked list type.
@@ -30,7 +29,7 @@ public class SortedList<T extends Comparable<? super T>>
     public void insertSortString(int index) {
         if (index != 3 && index != 2) {
             // if we're NOT sorting by genre, capitalization does NOT matter
-            Node<ArrayList<T>> currNode = head;
+            Node<T> currNode = head;
             while (currNode.next != null) {
                 // String s = (String)currNode.getData().get(0);
                 currNode = currNode.next;
@@ -39,12 +38,12 @@ public class SortedList<T extends Comparable<? super T>>
 
         if (getSize() > 1) {
             assert head != null;
-            Node<ArrayList<T>> unsorted = head.next.next;
+            Node<T> unsorted = head.next.next;
             assert unsorted != null;
             head.next.setNext(null);
             // insert node.
             while (unsorted.next != null) {
-                Node<ArrayList<T>> nodeToInsert = unsorted;
+                Node<T> nodeToInsert = unsorted;
                 unsorted = unsorted.next;
                 if (index != 2) {
                     // sort by string if we're not accessing year
@@ -70,13 +69,13 @@ public class SortedList<T extends Comparable<? super T>>
      *            position of string in array.
      */
     private void insertStringInOrder(
-        Node<ArrayList<T>> nodeToInsert,
+        Node<T> nodeToInsert,
         // get string in array with index.
         int index) {
         // uses [index] due to SortedList<T[]>
-        T data = nodeToInsert.getData().get(index);
-        Node<ArrayList<T>> currentNode = head.getNextNode();
-        Node<ArrayList<T>> previousNode = null;
+        T data = nodeToInsert.getData().get(index);f
+        Node<T> currentNode = head.getNextNode();
+        Node<T> previousNode = null;
         // compare order
         while ((currentNode != null) && (data.compareTo(currentNode.getData()
             .get(index)) > 0)) {
@@ -105,14 +104,14 @@ public class SortedList<T extends Comparable<? super T>>
      * @param nodeToInsert
      *            node need to insert.
      */
-    private void insertNumberInOrder(Node<ArrayList<T>> nodeToInsert) {
+    private void insertNumberInOrder(Node<T> nodeToInsert) {
         // get integer at index 2 in array.
-        int num = Integer.valueOf((nodeToInsert.getData().get(2).toString()));
-        Node<ArrayList<T>> currentNode = head.getNextNode();
-        Node<ArrayList<T>> previousNode = null;
+        int num = Integer.valueOf((nodeToInsert.getData().toString()));
+        Node<T> currentNode = head.getNextNode();
+        Node<T> previousNode = null;
         // compare number, cast it out.
         while ((currentNode != null) && (num) > (Integer.valueOf((currentNode
-            .getData().get(2).toString())))) {
+            .getData().toString())))) {
             previousNode = currentNode;
             currentNode = currentNode.getNextNode();
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package prj5;
+package project5;
 
 /**
  * Enum holder class
@@ -12,7 +12,7 @@ public class AllEnum {
     // Enum for hobby choices
     public enum hobbyEnum {READ, ART, SPORTS, MUSIC, BLANK};
     // Enum for major choices
-    public enum majorEnum {CS, OTHERENG, MATHCMDA, OTHER, BLANK};
+    public enum majorEnum {CS, OTHERENG, MC, OTHER, BLANK};
     // Enum for region choices
     public enum regionEnum {NEUS, SEUS, RESTUS, OUTUS, BLANK};
     // Enum for position

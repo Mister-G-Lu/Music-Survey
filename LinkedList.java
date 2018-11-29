@@ -1,4 +1,4 @@
-package prj5;
+package project5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -41,7 +41,7 @@ public class LinkedList<E> {
 
             this.data = data;
             previous = null;
-            next = null; 
+            next = null;
         }
 
 
@@ -90,13 +90,16 @@ public class LinkedList<E> {
             return next;
         }
 
+
         /**
-         * get previous node. 
-         * @return returns previous node. 
+         * get previous node.
+         * 
+         * @return returns previous node.
          */
         protected final Node<E> getPreviousNode() {
-            return previous; 
+            return previous;
         }
+
 
         /**
          * set the next node.
@@ -163,9 +166,11 @@ public class LinkedList<E> {
         return size;
     }
 
+
     public void clear() {
         initialize();
     }
+
 
     /**
      * Adds the object to the position in the list
@@ -215,13 +220,15 @@ public class LinkedList<E> {
         add(size, newEntry);
     }
 
+
     /**
      * 
      * @return
      */
-    public Node<E> getLastNode() {   
-        return getNodeAtIndex(size - 1); 
+    public Node<E> getLastNode() {
+        return getNodeAtIndex(size - 1);
     }
+
 
     /**
      * Returns a string representation of the list If a list contains A, B, and
@@ -257,17 +264,20 @@ public class LinkedList<E> {
      * @throws IndexOutOfBoundsException
      *             if there no node at the given index
      */
-    public E getData(int index) {
+    protected final E getData(int index) {
         return getNodeAtIndex(index).getData();
     }
+
 
     /**
      * 
      * @return
      */
     protected final Node<E> getFirstNode() {
-        return getNodeAtIndex(0); 
+        return getNodeAtIndex(0);
     }
+
+
     /**
      * gets the node at that index
      * 
@@ -314,28 +324,27 @@ public class LinkedList<E> {
      *            where the object is located
      * @throws IndexOutOfBoundsException
      *             if there is not an element at the index
-     * @return node's data that is removedl 
+     * @return node's data that is removedl
      */
     public E remove(int index) {
-        E removed = null; 
+        E removed = null;
         if (index >= 1) {
-            assert !isEmpty(); 
+            assert !isEmpty();
             if (index == 1) {
-                removed = head.getData(); 
+                removed = head.getData();
                 head = head.getNextNode();
             }
             else {
-                Node<E> nodeBefore = getNodeAtIndex(index -1);
+                Node<E> nodeBefore = getNodeAtIndex(index - 1);
                 Node<E> nodeToRemoved = nodeBefore.getNextNode();
                 removed = nodeToRemoved.getData();
                 Node<E> nodeAfter = nodeToRemoved.getNextNode();
                 nodeBefore.setNext(nodeAfter);
-                }
+            }
             size--;
-            return removed; 
+            return removed;
         }
-        
-            throw new IndexOutOfBoundsException(); 
+        throw new IndexOutOfBoundsException();
     }
 
 

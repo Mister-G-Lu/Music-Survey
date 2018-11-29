@@ -1,4 +1,4 @@
-package prj5;
+package project5;
 
 import java.util.ArrayList;
 import student.TestCase;
