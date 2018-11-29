@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package project5;
 
 import java.util.LinkedList;
