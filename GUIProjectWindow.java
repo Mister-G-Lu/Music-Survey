@@ -154,9 +154,9 @@ public class GUIProjectWindow extends JPanel {
         }
           //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < (count+9)*3; i++) {
-            //TO-DO: Update BarShape to heard/liked percentages
-            BarShape liked = new BarShape(50, 50);
-            BarShape heard = new BarShape(50, 50);
+            //TO-DO: Update BarShape to use this calculated heard/liked percentage.
+            // Syntax: Percent, length, x, y
+            
             window.addShape(index);
             if (i < 2) {
                 moveBar(liked, Position.TOPLEFT);
