@@ -1,6 +1,3 @@
-/**
- * 
- */
 package project5;
 
 import java.awt.Color;
