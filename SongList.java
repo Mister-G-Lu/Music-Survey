@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * songs list contain basic info of a song and its survey mySong.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
  */
 public class SongList extends LinkedList<Song> {

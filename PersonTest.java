@@ -6,7 +6,7 @@ import student.TestCase;
 /**
  * test case for Person class.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class PersonTest extends TestCase {

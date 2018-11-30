@@ -3,7 +3,7 @@ package project5;
 /**
  * a song contains song title, artiest, year, genre.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
  */
 public class Song {

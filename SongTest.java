@@ -9,7 +9,7 @@ import student.TestCase;
 /**
  * test case for song.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
  */
 public class SongTest extends TestCase {

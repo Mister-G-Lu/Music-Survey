@@ -8,10 +8,8 @@ import project5.AllEnum.*;
 /**
  * scan files and store into song list.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
- * @author goodwin lu
- * @version 2018/11/29
  */
 public class FilesScanner {
 

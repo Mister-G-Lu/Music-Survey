@@ -9,7 +9,7 @@ import student.TestCase;
 /**
  * test case for surveystat.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class SurveyStatTest extends TestCase {

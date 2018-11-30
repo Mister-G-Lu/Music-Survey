@@ -5,7 +5,7 @@ import project5.AllEnum.*;
 /**
  * Person represents major, hobby, answers on single song.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class Person {

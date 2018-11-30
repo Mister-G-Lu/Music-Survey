@@ -8,11 +8,11 @@ import project5.AllEnum.*;
 /**
  * a type for calculate yes and no numbers in the survey.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class SurveyStat {
-    private final static int statListNumEntries = 3;
+//    private final static int statListNumEntries = 3;
     /**
      * {major, region, hobby}
      */

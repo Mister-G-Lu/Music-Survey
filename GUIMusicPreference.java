@@ -1,6 +1,5 @@
 package project5;
 
-import project5.AllEnum.*;
 import CS2114.*;
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -9,10 +8,8 @@ import java.util.Iterator;
 /**
  * The class crates a window and showing the statistics of survey.
  * 
- * @author gengzelyu
+ * @aithor Gengze Lyu (lgengze)
  * @version 2018.11.29
- * @author goodwin lu
- * @version 2018/11/29
  */
 public class GUIMusicPreference {
     // data fields
@@ -111,7 +108,6 @@ public class GUIMusicPreference {
      * initialize buttons on the sindow.
      */
     private void initializeButtons() {
-        systemStateTextShape.onClick(this, "clickedSystemState");
         prevButton.onClick(this, "clickedPrev");
         nextButton.onClick(this, "clickedNext");
         quitButton.onClick(this, "clickedQuit");
@@ -163,6 +159,7 @@ public class GUIMusicPreference {
         repHobbyButton.enable();
         repRegionButton.enable();
         updateShapes(currSortMode, currRepMode, null);
+        disableSortRepButtons();
     }
 
 
@@ -697,6 +694,18 @@ public class GUIMusicPreference {
 
 
     /**
+     * call this when report is clicked on loading to prevent null
+     * pointer.
+     * 
+     * @param text
+     *            text shape
+     */
+    public void clickedSystemReportWhenLoading(TextShape text) {
+        // DO NOTHING
+    }
+
+
+    /**
      * report the system state.
      * 
      * @param state
@@ -705,7 +714,10 @@ public class GUIMusicPreference {
     private void reportSystemState(String state) {
         switch (state) {
             case "loading":
-                systemStateTextShape.setText("System is loading...");
+                systemStateTextShape.setText(
+                    "System is loading, please hold...");
+                systemStateTextShape.onClick(this,
+                    "clickedSystemReportWhenLoading");
                 prevButton.disable();
                 nextButton.disable();
                 sortByArtistButton.disable();
@@ -721,6 +733,7 @@ public class GUIMusicPreference {
                 systemStateTextShape.setText(
                     "System is loaded. Click HERE to start.");
                 systemStateTextShape.setBackgroundColor(Color.LIGHT_GRAY);
+                systemStateTextShape.onClick(this, "clickedSystemState");
                 centerSystemStateTextShape();
                 break;
         }

@@ -6,7 +6,7 @@ import student.TestCase;;
 
 /**
  * test linked list class; 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.1
  */
 public class LinkedListTest extends TestCase {

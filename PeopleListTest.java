@@ -1,6 +1,5 @@
 package project5;
 
-import java.util.Iterator;
 import java.util.Random;
 import project5.AllEnum.hobbyEnum;
 import project5.AllEnum.majorEnum;
@@ -11,7 +10,7 @@ import student.TestCase;
 /**
  * Test case for PeopleList.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class PeopleListTest extends TestCase {

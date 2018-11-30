@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * PeopleList represents the list of person.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class PeopleList extends LinkedList<Person> {

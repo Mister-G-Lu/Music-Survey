@@ -1,14 +1,14 @@
 package project5;
 
-import java.io.File;
+//import java.io.File;
 import java.io.FileNotFoundException;
-import project5.AllEnum.*;
+//import project5.AllEnum.*;
 import student.TestCase;
 
 /**
  * test case for filesScanner
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
  */
 public class FilesScannerTest extends TestCase {

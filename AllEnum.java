@@ -6,6 +6,7 @@ package project5;
 /**
  * Enum holder class
  * @author Jack Juechter
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.7
  */
 public class AllEnum {

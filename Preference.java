@@ -5,7 +5,7 @@ import project5.AllEnum.*;
 /**
  * prefference represents as heard and likes count.
  * 
- * @author gengzelyu
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
  */
 public class Preference {
