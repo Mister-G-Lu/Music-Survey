@@ -8,8 +8,10 @@ import java.util.Iterator;
 /**
  * The class crates a window and showing the statistics of survey.
  * 
- * @aithor Gengze Lyu (lgengze)
+ * @author Gengze Lyu (lgengze)
  * @version 2018.11.29
+ * @author Goodwin Lu
+ * @version 2018/11/29
  */
 public class GUIMusicPreference {
     // data fields
