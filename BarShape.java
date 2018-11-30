@@ -35,7 +35,7 @@ public class BarShape extends Shape {
      * @param startY
      *            start Y
      * @param width
-     *            width of panel
+     *            width of bar
      */
     public Barshape(int percent, int startX, int startY, int w) 
     {
