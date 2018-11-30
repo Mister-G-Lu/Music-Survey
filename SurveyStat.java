@@ -10,6 +10,8 @@ import project5.AllEnum.*;
  * 
  * @author Gengze Lyu (lgengze)
  * @version 2018.11.28
+ * @author Goodwin Lu
+ * @version 2018/11/29
  */
 public class SurveyStat {
 //    private final static int statListNumEntries = 3;
