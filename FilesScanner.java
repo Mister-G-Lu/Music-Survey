@@ -10,6 +10,8 @@ import project5.AllEnum.*;
  * 
  * @author gengzelyu
  * @version 2018.11.29
+ * @author goodwin lu
+ * @version 2018/11/29
  */
 public class FilesScanner {
 
