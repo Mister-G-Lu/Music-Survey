@@ -14,8 +14,6 @@ import project5.AllEnum.*;
 public class FilesScanner {
 
     private String surveyFileName;
-    private static String root =
-        "//Users//gengzelyu//eclipse-workspace//MusicPrefference//src//project5//";
     private static SongList rawSongList;
 
 
@@ -56,8 +54,8 @@ public class FilesScanner {
         this.surveyFileName = surveyFileName;
         Scanner surveyScanner = null;
         Scanner songListScanner = null;
-        surveyScanner = new Scanner(new File(root + surveyFileName));
-        songListScanner = new Scanner(new File(root + songListName));
+        surveyScanner = new Scanner(new File(surveyFileName));
+        songListScanner = new Scanner(new File(songListName));
         SongList localList = listMaker(surveyScanner, songListScanner);
         return localList;
     }
@@ -103,7 +101,7 @@ public class FilesScanner {
      * @return returns new survey file scanner.
      */
     private Scanner resetSurveyFileScanner() throws FileNotFoundException {
-        Scanner surveyScanner = new Scanner(new File(root + surveyFileName));
+        Scanner surveyScanner = new Scanner(new File(surveyFileName));
         surveyScanner.nextLine();
         return surveyScanner;
     }

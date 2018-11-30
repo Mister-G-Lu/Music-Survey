@@ -75,41 +75,41 @@ public class SurveyStatTest extends TestCase {
     /**
      * test Preffernce class in surveystat test.
      */
-    public void testPrefference() {
+    public void testPreference() {
         // cs major, person 1 and 10.
-        Prefference preffCS = new Prefference();
-        preffCS.smartCountAdder(person1);
-        assert preffCS.toString().equals(
+        Preference prefCS = new Preference();
+        prefCS.smartCountAdder(person1);
+        assert prefCS.toString().equals(
             "Heard(total/yes): 1/1 Likes(total/yes): 1/1");
-        preffCS.smartCountAdder(person10);
-        assert preffCS.toString().equals(
+        prefCS.smartCountAdder(person10);
+        assert prefCS.toString().equals(
             "Heard(total/yes): 1/1 Likes(total/yes): 1/1");
 
         // mc major, person 3 and 9
-        Prefference preffMC = new Prefference();
-        preffMC.smartCountAdder(person3);
-        assertEquals(preffMC.toString(),
+        Preference prefMC = new Preference();
+        prefMC.smartCountAdder(person3);
+        assertEquals(prefMC.toString(),
             "Heard(total/yes): 1/1 Likes(total/yes): 1/0");
-        preffMC.smartCountAdder(person9);
-        assertEquals(preffMC.toString(),
+        prefMC.smartCountAdder(person9);
+        assertEquals(prefMC.toString(),
             "Heard(total/yes): 2/2 Likes(total/yes): 2/1");
 
         // other major, person 3 and 9
-        Prefference preffOTHER = new Prefference();
-        preffOTHER.smartCountAdder(person4);
-        assertEquals(preffOTHER.toString(),
+        Preference prefOTHER = new Preference();
+        prefOTHER.smartCountAdder(person4);
+        assertEquals(prefOTHER.toString(),
             "Heard(total/yes): 1/0 Likes(total/yes): 1/1");
-        preffOTHER.smartCountAdder(person6);
-        assertEquals(preffOTHER.toString(),
+        prefOTHER.smartCountAdder(person6);
+        assertEquals(prefOTHER.toString(),
             "Heard(total/yes): 1/0 Likes(total/yes): 2/2");
 
         // otherENG major, person 3 and 9
-        Prefference prefferOTHERENG = new Prefference();
-        prefferOTHERENG.smartCountAdder(person2);
-        assertEquals(prefferOTHERENG.toString(),
+        Preference preferOTHERENG = new Preference();
+        preferOTHERENG.smartCountAdder(person2);
+        assertEquals(preferOTHERENG.toString(),
             "Heard(total/yes): 1/0 Likes(total/yes): 1/0");
-        prefferOTHERENG.smartCountAdder(person7);
-        assertEquals(prefferOTHERENG.toString(),
+        preferOTHERENG.smartCountAdder(person7);
+        assertEquals(preferOTHERENG.toString(),
             "Heard(total/yes): 2/1 Likes(total/yes): 2/0");
 
         // if major, region or hobby is blank, it should be handled by

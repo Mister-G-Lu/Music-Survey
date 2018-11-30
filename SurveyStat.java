@@ -20,9 +20,9 @@ public class SurveyStat {
     /**
      * {CS, OTHERENG, MC, OTHER}
      */
-    private List<Prefference> majorList;
-    private List<Prefference> regionList;
-    private List<Prefference> hobbyList;
+    private List<Preference> majorList;
+    private List<Preference> regionList;
+    private List<Preference> hobbyList;
     private static PeopleList people;
 
 
@@ -45,16 +45,16 @@ public class SurveyStat {
         checkInputLegal();
         // iniliaze lists.
         statList = new ArrayList<Object>();
-        majorList = new ArrayList<Prefference>();
-        regionList = new ArrayList<Prefference>();
-        hobbyList = new ArrayList<Prefference>();
+        majorList = new ArrayList<Preference>();
+        regionList = new ArrayList<Preference>();
+        hobbyList = new ArrayList<Preference>();
         // interate 4 times and add 4 entries, representing 4 indie fields.
         for (int i = 0; i < 4; i++) {
-            // create empty prefference before adding to lists.
-            Prefference emptyPreff1 = new Prefference();
-            Prefference emptyPreff2 = new Prefference();
-            Prefference emptyPreff3 = new Prefference();
-            // add empty prefferences into lists.
+            // create empty preference before adding to lists.
+            Preference emptyPreff1 = new Preference();
+            Preference emptyPreff2 = new Preference();
+            Preference emptyPreff3 = new Preference();
+            // add empty preferences into lists.
             majorList.add(emptyPreff1);
             regionList.add(emptyPreff2);
             hobbyList.add(emptyPreff3);
@@ -171,10 +171,10 @@ public class SurveyStat {
      * @param i
      *            index of list {CS, OTHERENG, MC, OTHER}
      * @param currPerson
-     *            current person that has prefferences.
+     *            current person that has preferences.
      */
     private void addPreffToMajorList(int i, Person currPerson) {
-        Prefference currMajor = majorList.get(i);
+        Preference currMajor = majorList.get(i);
         currMajor.smartCountAdder(currPerson);
     }
 
@@ -185,10 +185,10 @@ public class SurveyStat {
      * @param i
      *            index of list {NEUS, SEUS, RESTUS, OUTUS}
      * @param currPerson
-     *            current person that has prefferences.
+     *            current person that has preferences.
      */
     private void addPreffToRegionList(int i, Person currPerson) {
-        Prefference currRegion = regionList.get(i);
+        Preference currRegion = regionList.get(i);
         currRegion.smartCountAdder(currPerson);
     }
 
@@ -199,22 +199,22 @@ public class SurveyStat {
      * @param i
      *            index of list {READ, ART, SPORTS, MUSIC}
      * @param currPerson
-     *            current person that has prefferences.
+     *            current person that has preferences.
      */
     private void addPreffToHobbyList(int i, Person currPerson) {
-        Prefference currHoby = hobbyList.get(i);
+        Preference currHoby = hobbyList.get(i);
         currHoby.smartCountAdder(currPerson);
     }
 
 
     /**
-     * get the prefferences by major index.
+     * get the preferences by major index.
      * 
      * @param majorIndex
-     *            index that you want to get prefferences.
-     * @return returns prefferences.
+     *            index that you want to get preferences.
+     * @return returns preferences.
      */
-    public Prefference getPreffByMajorIndex(int majorIndex) {
+    public Preference getPreffByMajorIndex(int majorIndex) {
         switch (majorIndex) {
             case 0:
                 return (majorList.get(0));
@@ -233,13 +233,13 @@ public class SurveyStat {
 
 
     /**
-     * get the prefferences by region index.
+     * get the preferences by region index.
      * 
      * @param majorIndex
-     *            index that you want to get prefferences.
-     * @return returns prefferences.
+     *            index that you want to get preferences.
+     * @return returns preferences.
      */
-    public Prefference getPreffByRegionIndex(int regionIndex) {
+    public Preference getPreffByRegionIndex(int regionIndex) {
         switch (regionIndex) {
             case 0:
                 return (regionList.get(0));
@@ -258,13 +258,13 @@ public class SurveyStat {
 
 
     /**
-     * get the prefferences by hobby index.
+     * get the preferences by hobby index.
      * 
      * @param majorIndex
-     *            index that you want to get prefferences.
-     * @return returns prefferences.
+     *            index that you want to get preferences.
+     * @return returns preferences.
      */
-    public Prefference getPreffByHobbyIndex(int hobbyIndex) {
+    public Preference getPreffByHobbyIndex(int hobbyIndex) {
         switch (hobbyIndex) {
             case 0:
                 return (hobbyList.get(0));

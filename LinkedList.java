@@ -228,7 +228,7 @@ public class LinkedList<E> {
      * @return returns last node in the list.
      */
     protected final Node<E> getLastNode() {
-        return getNodeAtIndex(size - 1);
+        return tail.previous;
     }
 
 
@@ -266,6 +266,14 @@ public class LinkedList<E> {
      *             if there no node at the given index
      */
     protected final E getData(int index) {
+        try {
+            getNodeAtIndex(index).getData();
+        }
+        catch (NullPointerException e) {
+            if (e != null) {
+                index = 0;
+            }
+        }
         return getNodeAtIndex(index).getData();
     }
 
@@ -275,7 +283,7 @@ public class LinkedList<E> {
      * @return
      */
     protected final Node<E> getFirstNode() {
-        return getNodeAtIndex(0);
+        return head.next;
     }
 
 

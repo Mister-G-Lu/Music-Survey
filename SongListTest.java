@@ -57,7 +57,7 @@ public class SongListTest extends TestCase {
         songList = new SongList();
         randSongs = new Song[] { song1, song2, song3, song4, song5, song6,
             song7, song8, song9, song10 };
-        Random rand = new Random();
+//        Random rand = new Random();
         // command one of the codes below to try diff oder.
 // for (int i = 0; i < 10; i++) {
 // songList.add(randSongs[i]);
@@ -75,9 +75,9 @@ public class SongListTest extends TestCase {
      * test insert sort.
      */
     public void testInsertSortTitle() {
-        System.out.println("Sort by titile");
+// System.out.println("Sort by titile");
         SongList sortByTitle = songList.insertSort("title");
-        System.out.println(sortByTitle);
+// System.out.println(sortByTitle);
         assertEquals(sortByTitle.getSong(0), song1);
         assertEquals(sortByTitle.getSong(1), song2);
         assertEquals(sortByTitle.getSong(2), song3);
@@ -96,9 +96,9 @@ public class SongListTest extends TestCase {
      * test insert sort.
      */
     public void testInsertSortYear() {
-        System.out.println("\n\nSort by year");
+// System.out.println("\n\nSort by year");
         SongList sortByYear = songList.insertSort("year");
-        System.out.println(sortByYear);
+// System.out.println(sortByYear);
         assertEquals(sortByYear.getSong(0), song2);
         assertEquals(sortByYear.getSong(1), song3);
         assertEquals(sortByYear.getSong(2), song6);
@@ -110,26 +110,28 @@ public class SongListTest extends TestCase {
         assertEquals(sortByYear.getSong(8), song10);
         assertEquals(sortByYear.getSong(9), song8);
 
-    }
-
-
-    /**
-     * test insert sort.
-     */
-    public void testInsertSortArtist() {
-        System.out.println("\n\nSort by artist");
-        SongList sortByArtist = songList.insertSort("artist");
-        System.out.println(sortByArtist);
+        // test subsong list.
+        System.out.println(sortByYear.getSubSongList(0, 10));
+// assertEquals(sortByYear, sortByYear.getSubSongList(0, 10));
 
     }
 
+// /**
+// * test insert sort.
+// */
+// public void testInsertSortArtist() {
+// System.out.println("\n\nSort by artist");
+// SongList sortByArtist = songList.insertSort("artist");
+// System.out.println(sortByArtist);
+//
+// }
 
-    /**
-     * test insert sort.
-     */
-    public void testInsertSortGenre() {
-        System.out.println("\n\nSort by genre");
-        SongList sortByGenre = songList.insertSort("genre");
-        System.out.println(sortByGenre);
-    }
+// /**
+// * test insert sort.
+// */
+// public void testInsertSortGenre() {
+// System.out.println("\n\nSort by genre");
+// SongList sortByGenre = songList.insertSort("genre");
+// System.out.println(sortByGenre);
+// }
 }

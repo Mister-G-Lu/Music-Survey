@@ -1,5 +1,7 @@
 package project5;
 
+import java.util.Iterator;
+
 /**
  * songs list contain basic info of a song and its survey mySong.
  * 
@@ -66,6 +68,21 @@ public class SongList extends LinkedList<Song> {
 
 
     /**
+     * get a copy of current songList.
+     * 
+     * @return returns a copy of song list
+     */
+    public SongList getCopy() {
+        SongList copyList = new SongList();
+        Iterator<Song> iter = this.iterator();
+        while (iter.hasNext()) {
+            copyList.add((Song)iter.next());
+        }
+        return copyList;
+    }
+
+
+    /**
      * sort song list wiht alphabetical order based on request.
      * 
      * @param request
@@ -86,8 +103,8 @@ public class SongList extends LinkedList<Song> {
                 insertStringInOrder(nodeToInsert, request);
             }
             // repositioning head and tail.
-            head.setNext(getFirstNode());
-            tail.setPrevious(getLastNode());
+            head.setNext(getNodeAtIndex(0));
+            tail.setPrevious(getNodeAtIndex(size - 1));
         }
         return getSongList();
     }
@@ -105,21 +122,19 @@ public class SongList extends LinkedList<Song> {
         Node<Song> songToInsert,
         // get string in array with index.
         String request) {
-        // uses [index] due to SortedList<Song[]>
         Node<Song> currentNode = head.getNextNode();
         Node<Song> previousNode = null;
         Song mySong = songToInsert.getData();
-        Song currSong = currentNode.getData();
         // compare order
         while ((currentNode != null) && (this.compareToHelper(request, mySong,
             currentNode.getData()) > 0)) {
             previousNode = currentNode;
             currentNode = currentNode.getNextNode();
-
         }
         // insert order
         if (previousNode != null) {
             previousNode.setNext(songToInsert);
+            songToInsert.setPrevious(previousNode);
             songToInsert.setNext(currentNode);
         }
         // place it at beginning.
@@ -129,6 +144,30 @@ public class SongList extends LinkedList<Song> {
             head.setNext(songToInsert);
             currentNode.setPrevious(songToInsert);
         }
+    }
+
+
+    /**
+     * get a smaller song list based on index provided
+     * 
+     * @param beginIndex
+     *            begin index in song list.
+     * @param endIndex
+     *            end index in song list
+     * @return reurns subbed song list.
+     */
+    public SongList getSubSongList(int beginIndex, int endIndex) {
+        SongList subSongList = new SongList();
+        // if endindex is bigger than the last index, than sublist ends at last
+        // node.
+        if (endIndex >= this.getSize()) {
+            endIndex = this.getSize();
+
+        }
+        for (int i = beginIndex; i < endIndex; i++) {
+            subSongList.add(getData(i));
+        }
+        return subSongList;
     }
 
 
