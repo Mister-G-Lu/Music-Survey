@@ -129,7 +129,7 @@ public class GUIProjectWindow extends JPanel {
      *         the string
      */
     public String display(int which) {
-        return allSongs.get(which)[0] + " by " + allSongs.get(which)[1];
+        return allSongs.get(which).get(0) + " by " + allSongs.get(which).get(1);
     }
 
 
