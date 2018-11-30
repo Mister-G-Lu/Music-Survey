@@ -11,6 +11,8 @@ import java.util.Iterator;
  * 
  * @author gengzelyu
  * @version 2018.11.29
+ * @author goodwin lu
+ * @version 2018/11/29
  */
 public class GUIMusicPreference {
     // data fields
