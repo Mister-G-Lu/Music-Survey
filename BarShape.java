@@ -14,48 +14,120 @@ import CS2114.Shape;
  *          stored here, then used to create the bars
  */
 public class BarShape extends Shape {
+    private Shape[] bars;
+    private Shape divider;
+    private String percent
+    private int x;
+    private int y;
+    
+    private int width;
+    
+    private final int BAR_HEIGHT = 10;
 
-    private static Random r = new Random();
-    private int heardPercent;
-    private int likedPercent;
-
-
+    // ~ Constructor
     /**
-     * constructor
+     * creates a new BarShape
      * 
-     * @param s
-     *            the song
-     * @param h
-     *            the left side (heard)
-     * @param l
-     *            the right side (liked)
-     * 
+     * @param percent
+     *            hobby/major/region
+     * @param startX
+     *            start X
+     * @param startY
+     *            start Y
+     * @param width
+     *            width of panel
      */
-    public BarShape(int h, int l) {
-        super(-h, l, 5, new Color(r.nextInt(255)));
-        heardPercent = h;
-        likedPercent = l;
+    public Barshape(int percent, int startX, int startY, int w) 
+    {
+        this.percent = percent;
+        x = startX;
+        y = startY;
+        width = w;
+        bar = new Shape[8];
+        
+        divider = new Shape(0, 0, 5, BAR_HEIGHT * 4);
+        divider.setX(x + (width - divider.getWidth()) / 2);
+        divider.setY(y);
+        divider.setForegroundColor(Color.BLACK);
+        divider.setBackgroundColor(Color.BLACK);
+        
+        setUpBars();
     }
 
-
     /**
-     * get heard
-     * 
-     * @return
-     *         the heard percent
+     * sets up the bar
      */
-    public int getHeard() {
-        return heardPercent;
+    private void setUpBars() 
+    {
+        for (int i = 0; i < 4; i++) 
+                {
+                   bars[i] = new Shape(0, 0, percent, BAR_HEIGHT);
+                   bars[i + 4] = new Shape(0, 0, percent, BAR_HEIGHT);
+                }
+
+        }
+
+        setCoordinate();
+        
+        for (int i = 0; i < 8; i++) 
+        {
+            bars[i].setForegroundColor(Color.WHITE);
+        }
+        
+        bars[0].setBackgroundColor(Color.RED);
+        bars[4].setBackgroundColor(Color.RED);
+        bars[1].setBackgroundColor(Color.CYAN);
+        bars[5].setBackgroundColor(Color.CYAN);
+        bars[2].setBackgroundColor(Color.GREEN);
+        bars[6].setBackgroundColor(Color.GREEN);
+        bars[3].setBackgroundColor(Color.ORANGE);
+        bars[7].setBackgroundColor(Color.ORANGE);
+ 
     }
 
+    /**
+     * Set bar's coordinate
+     */
+    private void setCoordinate() 
+    {
+        int ytemp = y;
+
+        // Like
+        for (int i = 0; i < 4; i++) 
+        {
+            bars[i].setX(divider.getX() - bars[i].getWidth());
+            bars[i].setY(ytemp);
+            ytemp += BAR_HEIGHT;
+        }
+
+        ytemp = y;
+
+        // Heard
+        for (int i = 0; i < 4; i++) 
+        {
+            bars[i + 4].setX(divider.getX() + divider.getWidth());
+            bars[i + 4].setY(ytemp);
+            ytemp += BAR_HEIGHT;
+        }
+    }
 
     /**
-     * get liked
+     * Get divider
      * 
-     * @return
-     *         liked percent
+     * @return divider
      */
-    public int getLiked() {
-        return likedPercent;
+    public Shape getDivider() 
+    {
+        return divider;
+    }
+
+    /**
+     * Get the bar
+     * 
+     * @return bar
+     */
+    public Shape[] getBars() 
+    {
+        return bars;
     }
 }
