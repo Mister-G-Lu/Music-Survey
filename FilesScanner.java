@@ -2,113 +2,110 @@ package project5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
+import project5.AllEnum.*;
 
 /**
- * scan files and record data.
+ * scan files and store into song list.
  * 
  * @author gengzelyu
- * @version 2018.11.14
+ * @version 2018.11.29
  */
 public class FilesScanner {
 
-    private SortedList<Object> allSongData;
-    private String rootLocation;
-    private String surveyName;
+    private String surveyFileName;
+    private static String root =
+        "//Users//gengzelyu//eclipse-workspace//MusicPrefference//src//project5//";
+    private static SongList rawSongList;
+
 
     /**
-    * Default constructor.
-    */
-    public FilesScanner() {
+     * create a files scanner that scan song list and survey.
+     * 
+     * @param args
+     *            arguments of song lis file name and survet file name.
+     *            the [0]is survey file and [0] is songlist file.
+     */
+    public FilesScanner(String[] args) throws FileNotFoundException {
+        rawSongList = scanFiles(args[0], args[1]);
+    }
 
-        allSongData = new SortedList<Object>();
+
+    /**
+     * returns the scanned song list store in this class.
+     * 
+     * @return retuns scanned song list.
+     */
+    public SongList getScannedSongList() {
+        return rawSongList;
     }
 
 
     /**
      * scan files and add data to list.
      * 
-     * @param surveyName
+     * @param surveyFileName
      *            file name of survey data.
      * @param songListName
      *            file name of song list data.
-     * @throws FileNotFoundException
-     *             throw exception if file is not found.
-     * @return returns list contians all songs' data.
+     * @return returns songlist scanned from files.
      */
-    public void scanFiles(String surveyName, String songListName)
+    private SongList scanFiles(String surveyFileName, String songListName)
         throws FileNotFoundException {
-        // save it for resetter.
-        this.surveyName = surveyName;
-        // files location. change this or comment out on different pc.
-        rootLocation = "/Users/gengzelyu/Desktop/CS 2114/project 5/InputFiles/";
-        Exception thrown = null;
-        try {
-            Scanner surveyData = new Scanner(new File(rootLocation
-                + surveyName));
-            Scanner songListData = new Scanner(new File(rootLocation
-                + surveyName));
-        }
-        catch (FileNotFoundException e) {
-            thrown = e;
-        }
-        if (thrown != null) {
-            throw new FileNotFoundException();
-        }
-        Scanner surveyData = new Scanner(new File(rootLocation + surveyName));
-        Scanner songListData = new Scanner(new File(rootLocation
-            + songListName));
-        listCreator(surveyData, songListData);
+        // save it for scanner resetter.
+        this.surveyFileName = surveyFileName;
+        Scanner surveyScanner = null;
+        Scanner songListScanner = null;
+        surveyScanner = new Scanner(new File(root + surveyFileName));
+        songListScanner = new Scanner(new File(root + songListName));
+        SongList localList = listMaker(surveyScanner, songListScanner);
+        return localList;
     }
 
 
     /**
      * create list from scanner files.
-     * @param <T>
-     *            generic type.
-     * @param surveyData
+     * 
+     * @param surveyScanner
      *            survey scanner.
-     * @param songListData
+     * @param songListScanner
      *            song list scanner.
-     * @throws FileNotFoundException
+     * @return returns songlist scanned from files.
      */
-    private <T> void listCreator(Scanner surveyData, Scanner songListData)
+    private SongList listMaker(Scanner surveyScanner, Scanner songListScanner)
         throws FileNotFoundException {
-        // get song info.
         // skip first line.
-        Scanner localSurveyData = surveyData;
-        surveyData.nextLine();
-        songListData.nextLine();
-        // song index in the song list.
+        // song index in the song list. use in survey scanner to skipp answers.
         int songIndex = 0;
-        while (songListData.hasNextLine()) {
-            ArrayList<Object> newSong = new ArrayList<Object>();
-            newSong.add(songListScanner(songListData));
-            // get survey info under one line in song list.
-            // add new person to node. 
-            while (localSurveyData.hasNextLine()) {
-                Person newPerson = surveyScanner(localSurveyData, songIndex); 
-                newSong.add(newPerson); 
-            }
-            // reset survey scanner.
-            localSurveyData = resetSurveyScanner();
-            allSongData.add(newSong); 
-            songIndex+=2;
+        SongList localList = new SongList();
+        Scanner localSurveyFileScanner = surveyScanner;
+        // skip first line in song list.
+        songListScanner.nextLine();
+        surveyScanner.nextLine();
+        while (songListScanner.hasNextLine()) {
+            SurveyStat songStat = scanSureveyFile(localSurveyFileScanner,
+                songIndex);
+            Song newSong = songListScanner(songListScanner);
+            newSong.setSurveyStatistic(songStat);
+            localList.add(newSong);
+            localSurveyFileScanner = resetSurveyFileScanner();
+            songIndex += 2;
         }
+        surveyScanner.close();
+        songListScanner.close();
+        return localList;
     }
 
 
     /**
      * reset survey file scanner.
      * 
-     * @throws FileNotFoundException
-     * @return returns new scanner.
+     * @return returns new survey file scanner.
      */
-    private Scanner resetSurveyScanner() throws FileNotFoundException {
-        Scanner surveyData = new Scanner(new File(rootLocation + surveyName));
-        surveyData.nextLine();
-        return surveyData;
+    private Scanner resetSurveyFileScanner() throws FileNotFoundException {
+        Scanner surveyScanner = new Scanner(new File(root + surveyFileName));
+        surveyScanner.nextLine();
+        return surveyScanner;
     }
 
 
@@ -119,55 +116,163 @@ public class FilesScanner {
      *            song list scanner.
      * @return returns an array storing song info.
      */
-    private ArrayList<Object> songListScanner(Scanner songListData) {
+    private Song songListScanner(Scanner scanner) {
         // cant use scanner cause a line is not seperated by space.
-        String[] aLine = songListData.nextLine().split(",");
-        
-        String title = aLine[0].trim();
-        String artist = aLine[1].trim();
-        String year = aLine[2].trim();
-        String genre = aLine[3].trim();
-
-        ArrayList<Object> aSong = new ArrayList<Object>();
-        aSong.add(title);
-        aSong.add(artist);
-        aSong.add(year);
-        aSong.add(genre);
-        return aSong;
+        String[] aLine = scanner.nextLine().split(",");
+        // create a null survet that will be set in othe class.
+        SurveyStat nullSurvey = null;
+        // {title, artist, year, genre, survey}
+        return new Song(aLine[0].trim(), aLine[1].trim(), aLine[2].trim(),
+            aLine[3].trim(), nullSurvey);
     }
 
 
     /**
      * scan survey file and create a person class.
      * 
-     * @param surveyData
-     *            surey data scanner.
-     * @return returns new person class that storing person info.
+     * @param surveyScanner
+     *            surey file scanner.
+     * @return returns complete survey statistic of a song.
      */
-    private Person surveyScanner(Scanner surveyData, int songIndex) {
-        String[] aLine = surveyData.nextLine().replaceAll(",", ", ").split(",");
-        // assert 
-        assert aLine.length > 2;
-        // skip first 2 index and date.
-        // trim down string since data need to prevent empty answer. 
-        String major = aLine[2].trim();
-        String region = aLine[3].trim();
-        String hobby = aLine[4].trim();
-        Person newPerson = new Person(major, region, hobby);
-        // skip to ith song based on songIndex.
-        newPerson.addResponses(aLine[5 + songIndex].trim());
-        newPerson.addResponses(aLine[6 + songIndex].trim());
-        return newPerson;
+    private SurveyStat scanSureveyFile(Scanner scanner, int songIndex) {
+        // the first line has no data.
+        SurveyStat songStat;
+        PeopleList people = new PeopleList();
+        while (scanner.hasNextLine()) {
+            // split a line into string[]
+            String[] aLine = scanner.nextLine().replaceAll(",", ", ").split(
+                ",");
+            String major = aLine[2].trim();
+            String region = aLine[3].trim();
+            String hobby = aLine[4].trim();
+            // skill nth song
+            String heard = aLine[5 + songIndex].trim();
+            String like = aLine[6 + songIndex].trim();
+            // create new peson using helper method.
+            Person newbie = personCreateHelper(major, region, hobby, heard,
+                like);
+            people.add(newbie);
+        }
+        scanner.close();
+        songStat = new SurveyStat(people);
+        return songStat;
     }
 
 
     /**
-     * get song list store in this class.
+     * create new Person type with given string.
      * 
-     * @return returns song list with all raw data.
+     * @param major
+     *            string major
+     * @param region
+     *            string region.
+     * @param hobby
+     *            hobby string.
+     * @param heard
+     *            heard string.
+     * @param like
+     *            like string.
+     * @return
      */
-    public SortedList<Object> getAllSongData() {
-        return allSongData;
+    private Person personCreateHelper(
+        String majorString,
+        String regionString,
+        String hobbyString,
+        String heardString,
+        String likeString) {
+        majorEnum major = majorHelper(majorString);
+        regionEnum region = regionHelper(regionString);
+        hobbyEnum hobby = hobbyHelper(hobbyString);
+        responseEnum heard = preffHelper(heardString);
+        responseEnum like = preffHelper(likeString);
+        Person newbie = new Person(major, region, hobby, heard, like);
+        return newbie;
     }
 
+
+    /**
+     * helper method that convert string prefferece into enum.
+     * 
+     * @param responseEnum
+     *            string prefferece.
+     * @return returns one of the response enum.
+     */
+    private responseEnum preffHelper(String preffString) {
+        if (preffString.equals("Yes")) {
+            return responseEnum.YES;
+        }
+        else if (preffString.equals("No")) {
+            return responseEnum.NO;
+        }
+        return responseEnum.BLANK;
+    }
+
+
+    /**
+     * helper method that convert string major into enum.
+     * 
+     * @param majorString
+     *            string major.
+     * @return returns one of the major enum.
+     */
+    private majorEnum majorHelper(String majorString) {
+        switch (majorString) {
+            case "Computer Science":
+                return majorEnum.CS;
+            case "Other Engineering":
+                return majorEnum.OTHERENG;
+            case "Math or CMDA":
+                return majorEnum.MC;
+            case "Other":
+                return majorEnum.OTHER;
+            default:
+                return majorEnum.BLANK;
+        }
+    }
+
+
+    /**
+     * helper method that convert string region into enum.
+     * 
+     * @param regionString
+     *            string region.
+     * @return returns one of the region enum.
+     */
+    private regionEnum regionHelper(String regionString) {
+        switch (regionString) {
+            case "Northeast":
+                return regionEnum.NEUS;
+            case "Southeast":
+                return regionEnum.SEUS;
+            case "United States (other than Southeast or Northwest)":
+                return regionEnum.RESTUS;
+            case "Outside of United States":
+                return regionEnum.OUTUS;
+            default:
+                return regionEnum.BLANK;
+        }
+    }
+
+
+    /**
+     * helper method that convert string hobby into enum.
+     * 
+     * @param hobbyString
+     *            string hobby.
+     * @return returns one of the hobby enum.
+     */
+    private hobbyEnum hobbyHelper(String hobbyString) {
+        switch (hobbyString) {
+            case "reading":
+                return hobbyEnum.READ;
+            case "art":
+                return hobbyEnum.ART;
+            case "sports":
+                return hobbyEnum.SPORTS;
+            case "music":
+                return hobbyEnum.MUSIC;
+            default:
+                return hobbyEnum.BLANK;
+        }
+    }
 }

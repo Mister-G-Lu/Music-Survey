@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * liked list class that store basic data.
  * 
  * @author gengzelyu
- * @version 2018.11.1
+ * @version 2018.11.29
  * @param <E>
  *            genric type.
  */
@@ -15,7 +15,7 @@ public class LinkedList<E> {
 
     protected Node<E> head;
     protected Node<E> tail;
-    private int size;
+    protected int size;
 
 
     /**
@@ -24,6 +24,7 @@ public class LinkedList<E> {
      * @author gengzelyu
      * @version 2018.11.1
      */
+    @SuppressWarnings("hiding")
     protected final class Node<E> {
 
         protected E data;
@@ -136,7 +137,7 @@ public class LinkedList<E> {
     /**
      * inialize data fields.
      */
-    private void initialize() {
+    private final void initialize() {
 
         head = new Node<E>(null);
         tail = new Node<E>(null);
@@ -222,10 +223,11 @@ public class LinkedList<E> {
 
 
     /**
+     * get the last node in the list.
      * 
-     * @return
+     * @return returns last node in the list.
      */
-    public Node<E> getLastNode() {
+    protected final Node<E> getLastNode() {
         return getNodeAtIndex(size - 1);
     }
 
@@ -244,12 +246,11 @@ public class LinkedList<E> {
                 E element = currNode.getData();
                 builder.append(element.toString());
                 if (currNode.next != tail && currNode.next != null) {
-                    builder.append(", ");
+                    builder.append("\n");
                 }
                 currNode = currNode.next;
             }
         }
-
         builder.append("}");
         return builder.toString();
     }

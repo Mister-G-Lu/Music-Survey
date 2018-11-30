@@ -79,7 +79,7 @@ public class SurveyStat {
      */
     private void checkInputLegal() {
         if (people == null) {
-            throw new IllegalArgumentException("people list cannot be null");
+            throw new IllegalArgumentException("PeopleList cannot be null");
         }
     }
 
@@ -285,6 +285,8 @@ public class SurveyStat {
     /**
      * check if two SurveyData are equals.
      * 
+     * @param obj
+     *            ther other SurveyData
      * @return returns true only if all data in fields are equal.
      */
     public boolean equals(Object obj) {

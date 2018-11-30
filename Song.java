@@ -4,7 +4,7 @@ package project5;
  * a song contains song title, artiest, year, genre.
  * 
  * @author gengzelyu
- *
+ * @version 2018.11.29
  */
 public class Song {
     private String title;
@@ -43,7 +43,7 @@ public class Song {
 
 
     /**
-     * set the survey statistic.
+     * set the survey statistic. 
      * 
      * @param survey
      *            the new survey statistic.
@@ -114,12 +114,18 @@ public class Song {
      *            the string field in this class.
      * @param otherS
      *            the string field in other class.
+     * @param isCaseMatter
+     *            comapare based on case requirment. true means case does
+     *            matter.
      * @return returns int representing the aplhabetical oder.
-     *          <0 means this string is smaller than other. 
-     *          >0 means this string is bigger than other. 
-     *          =0 means have same oder. 
+     *         <0 means this string is smaller than other.
+     *         >0 means this string is bigger than other.
+     *         =0 means have same oder.
      */
-    public int compareTo(String thisS, String otherS) {
+    public int compareTo(String thisS, String otherS, boolean doesCaseMatter) {
+        if (doesCaseMatter) {
+            return thisS.trim().compareTo(otherS.trim());
+        }
         return thisS.toLowerCase().trim().compareTo(otherS.toLowerCase()
             .trim());
     }

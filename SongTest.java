@@ -98,39 +98,46 @@ public class SongTest extends TestCase {
      */
     public void testCompareTo() {
         // same oder.
-        assertEquals(0, song1.compareTo("a", "a"));
-        assertEquals(0, song1.compareTo("a", "A"));
-        assertEquals(0, song1.compareTo("abc", "abc"));
-        assertEquals(0, song1.compareTo("ABC", "ABC"));
-        assertEquals(0, song1.compareTo("AbC", "AbC"));
-        assertEquals(0, song1.compareTo(" a ", " a"));
-        assertEquals(-1, song1.compareTo("a", "B"));
-        assertEquals(-25, song1.compareTo("a", "Z"));
-        assertEquals(-25, song1.compareTo("a", "zz"));
-        assertEquals(-24, song1.compareTo("ab", "az"));
+        assertEquals(0, song1.compareTo("a", "a", false));
+        assertEquals(0, song1.compareTo("a", "A", false));
+        assertEquals(0, song1.compareTo("abc", "abc", false));
+        assertEquals(0, song1.compareTo("ABC", "ABC", false));
+        assertEquals(0, song1.compareTo("AbC", "AbC", false));
+        assertEquals(0, song1.compareTo(" a ", " a", false));
+        assertEquals(-1, song1.compareTo("a", "B", false));
+        assertEquals(-25, song1.compareTo("a", "Z", false));
+        assertEquals(-25, song1.compareTo("a", "zz", false));
+        assertEquals(-24, song1.compareTo("ab", "az", false));
         // integer string.
-        assertEquals(0, song1.compareTo("1", "1"));
-        assertEquals(-1, song1.compareTo("1", "2"));
-        assertEquals(1, song1.compareTo("2", "1"));
-        assertEquals(1, song1.compareTo("123", "12"));
-        assertEquals(-2, song1.compareTo("1", "100"));
-        assertEquals(1, song1.compareTo("101", "100"));
-        // string with
-        assertEquals(0, song1.compareTo(",", ","));
-        assertEquals(-1, song1.compareTo(",", ",,"));
-        assertEquals(-2, song1.compareTo(", ", ",,,"));
-        assertEquals(0, song1.compareTo("a's", "a's"));
-        assertEquals(-1, song1.compareTo("a'b", "a'c"));
-        assertEquals(1, song1.compareTo("a'c", "a'b"));
+        assertEquals(0, song1.compareTo("1", "1", false));
+        assertEquals(-1, song1.compareTo("1", "2", false));
+        assertEquals(1, song1.compareTo("2", "1", false));
+        assertEquals(1, song1.compareTo("123", "12", false));
+        assertEquals(-2, song1.compareTo("1", "100", false));
+        assertEquals(1, song1.compareTo("101", "100", false));
+        assert song1.compareTo("1991", "2011", false) < 0;
+        // string with signs
+        assertEquals(0, song1.compareTo(",", ",", false));
+        assertEquals(-1, song1.compareTo(",", ",,", false));
+        assertEquals(-2, song1.compareTo(", ", ",,,", false));
+        assertEquals(0, song1.compareTo("a's", "a's", false));
+        assertEquals(-1, song1.compareTo("a'b", "a'c", false));
+        assertEquals(1, song1.compareTo("a'c", "a'b", false));
+        assert song1.compareTo("ABBA", "aha", false) < 0;
+        assert song1.compareTo("a-ha", "TOM Petty", false) < 0;
+        // compare when case dose matter.
+        assertEquals(32, song1.compareTo("a", "A", true));
+        assert song1.compareTo("R&B", "alternative", true) < 0;
     }
 
+
     /**
-     * test equals funcion 
+     * test equals funcion
      */
     public void testEquals() {
-        // same entries diff reff. 
+        // same entries diff reff.
         Song nullSong = null;
-        String string = "hey"; 
+        String string = "hey";
         try {
             song1.equals(nullSong);
         }
@@ -152,8 +159,8 @@ public class SongTest extends TestCase {
         SurveyStat stat2 = new SurveyStat(list2);
         song2 = new Song("song1", "gen", "1999", "hip-pop", stat2);
         assertTrue(song1.equals(song2));
-        
-        // diff entries. 
+
+        // diff entries.
         list2.clear();
         list2.add(person1);
         list2.add(person3);
