@@ -25,7 +25,7 @@ public class RepresentSurvey {
         region = int[4];
         major = int[4];
         hobby = int[4];
-        for (int i=0; i<4; i++){
+        for (int i = 0; i < 4; i++){
             region[i] = 0;
             major[i] = 0;
             major[i] = 0;
