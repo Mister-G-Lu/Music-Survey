@@ -155,34 +155,35 @@ public class GUIProjectWindow extends JPanel {
           //TO-DO: LEGEND METHOD STUB
         for (int i = 0; i < (count+9)*3; i++) {
             //TO-DO: Update BarShape to heard/liked percentages
-            BarShape index = new BarShape(50, 50);
+            BarShape liked = new BarShape(50, 50);
+            BarShape heard = new BarShape(50, 50);
             window.addShape(index);
             if (i < 2) {
-                moveBar(index, Position.TOPLEFT);
+                moveBar(liked, Position.TOPLEFT);
             }
             else if (i < 5) {
-                moveBar(index, Position.TOP);
+                moveBar(liked, Position.TOP);
             }
             else if (i < 8) {
-                moveBar(index, Position.TOPRIGHT);
+                moveBar(liked, Position.TOPRIGHT);
             }
             else if (i < 11) {
-                moveBar(index, Position.LEFT);
+                moveBar(liked, Position.LEFT);
             }
             else if (i < 14) {
-                moveBar(index, Position.MIDDLE);
+                moveBar(liked, Position.MIDDLE);
             }
             else if (i < 17) {
-                moveBar(index, Position.RIGHT);
+                moveBar(liked, Position.RIGHT);
             }
             else if (i < 20) {
-                moveBar(index, Position.DOWNLEFT);
+                moveBar(liked, Position.DOWNLEFT);
             }
             else if (i < 23) {
-                moveBar(index, Position.DOWN);
+                moveBar(liked, Position.DOWN);
             }
             else {
-                moveBar(index, Position.DOWNRIGHT);
+                moveBar(liked, Position.DOWNRIGHT);
             }
         }
     }
