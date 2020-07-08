@@ -92,23 +92,17 @@ public class BarShape extends Shape {
     {
         int ytemp = y;
 
-        // Like
+     
         for (int i = 0; i < 4; i++) 
-        {
+        {   // Like
             bars[i].setX(divider.getX() - bars[i].getWidth());
             bars[i].setY(ytemp);
-            ytemp += BAR_HEIGHT;
-        }
-
-        ytemp = y;
-
-        // Heard
-        for (int i = 0; i < 4; i++) 
-        {
+            // heard
             bars[i + 4].setX(divider.getX() + divider.getWidth());
             bars[i + 4].setY(ytemp);
             ytemp += BAR_HEIGHT;
         }
+
     }
 
     /**
